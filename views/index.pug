@@ -1,16 +1,25 @@
 extends layout
 
 block content
+  script.
+    function empty() {
+      let input = document.getElementById("username").value;
+      if (input == "") {
+        return false;
+      }
+    }
   .container-fluid.border-bottom.box-shadow
     .row.align-items-center
       .col-6
         h5 Analyze SoundCloud Users and their Tracks
       .col-4
         form.form-inline.mt-2.mt-md-0
-          input.form-control.mr-sm-2(name="user" type="text" placeholder="username")
-          button.btn.btn-outline-warning.my-2.mr-2(type="submit") Find User
-          button.btn.btn-outline-warning.my-2.mr-2(type="submit" name="download" style="display:none") Download User Data
+          input.form-control.mr-sm-2(id="username" name="username" type="text" placeholder="username")
+          if user
+            input(name="user" type="hidden" value=user)          
+          button.btn.btn-outline-warning.my-2.mr-2(id="find-user" type="submit" onclick="return empty()") Find User
+          button.btn.btn-outline-warning.my-2.mr-2(id="download" type="submit" name="download" style=style) Download User Data
       .col-2
         button.btn.btn-outline-warning.ml-4(id="choose-sheet") Choose Worksheet
 
-  
+
