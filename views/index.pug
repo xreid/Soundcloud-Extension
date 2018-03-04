@@ -8,18 +8,26 @@ block content
         return false;
       }
     }
-  .container-fluid.border-bottom.box-shadow
+  .container-fluid.border-bottom
     .row.align-items-center
       .col-6
-        h5 Analyze SoundCloud Users and their Tracks
+        h1 Analyze SoundCloud Users and their Tracks
       .col-4
         form.form-inline.mt-2.mt-md-0
-          input.form-control.mr-sm-2(id="username" name="username" type="text" placeholder="username")
-          if user
-            input(name="user" type="hidden" value=user)          
+          input.form-control.mr-sm-2(id="username" name="username" type="text" placeholder="username")         
           button.btn.btn-outline-warning.my-2.mr-2(id="find-user" type="submit" onclick="return empty()") Find User
-          button.btn.btn-outline-warning.my-2.mr-2(id="download" type="submit" name="download" style=style) Download User Data
+          button.btn.btn-outline-warning.my-2.mr-2(id="download" type="submit" name="download" value="user" style=style) user.csv
+          button.btn.btn-outline-warning.my-2.mr-2(id="download" type="submit" name="download" value="tracks" style=style) tracks.csv
       .col-2
         button.btn.btn-outline-warning.ml-4(id="choose-sheet") Choose Worksheet
+  if user
+    .container-fluid
+      h2.my-md= user.permalink
+  if tracks
+    .container-fluid
+      h3 Tracks          
+      each track in tracks
+        iframe(width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/" + track.id + "&color=%23f6b87a&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true")
+
 
 

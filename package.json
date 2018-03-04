@@ -10,6 +10,8 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "fs": "0.0.1-security",
+    "json-2-csv": "^2.2.0",
     "morgan": "~1.9.0",
     "node-soundcloud": "0.0.6",
     "pug": "2.0.0-beta11",
