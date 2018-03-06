@@ -27,10 +27,15 @@ router.get('/', function(req, res, next) {
   }
 
   if (username != undefined) {
+    username = encodeURI(username);
     getUser(username, res, (user, res) => {
+      user = JSON.parse(JSON.stringify(user).replace(/\\n/g, ' '));
       converter.json2csv([user], (error, csv) => {
         userCsv = csv;
         getTracks(user.id, res, (tracks, res) => {
+          tracks = tracks.map(track => {
+            return JSON.parse(JSON.stringify(track).replace(/\\n/g, ' '));
+          });
           converter.json2csv(tracks, (error, csv) => {
             trackCsv = csv;
             fs.writeFile('./public/user.csv', userCsv, (error) => {
